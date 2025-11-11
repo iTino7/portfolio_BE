@@ -17,7 +17,7 @@ public class EmailContactService implements ContactService {
 
     @Override
     public void handle(ContactRequest request) {
-        // TODO: gestisci meglio logging e fallback
+        
         mailSender.send(mimeMessage -> {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
             helper.setTo("tua-destinazione@example.com");
