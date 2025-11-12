@@ -27,10 +27,12 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/",
                                 "/index.html",
+                                "/error",
+                                "/static/**",          // se hai risorse statiche
                                 "/api/contact",
                                 "/v3/api-docs/**",
                                 "/swagger-ui.html",
-                                "/swagger-ui/**"
+                                "/swagger-ui"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
