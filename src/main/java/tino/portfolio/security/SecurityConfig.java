@@ -41,7 +41,10 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173")); // aggiungi eventuali domini prod
+        configuration.setAllowedOrigins(List.of(
+                "http://localhost:5173",
+                "https://portfolio-itino7s-projects.vercel.app"
+        )); // aggiungi eventuali domini prod
         configuration.setAllowedMethods(List.of("POST", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(false);
