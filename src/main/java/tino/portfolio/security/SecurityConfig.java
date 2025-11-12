@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())                  // attiva CORS sotto Spring Security
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/api/contact/**").permitAll()
+                        .requestMatchers("/api/contact", "/api/contact/**").permitAll()
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                         .anyRequest().authenticated()
                 )
@@ -38,8 +38,8 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(List.of(
-                "http://localhost:*",
-                "https://*.vercel.app"
+                "http://localhost:5173",
+                "https://portfolio-itino7s-projects.vercel.app/"
         ));
         configuration.setAllowedMethods(List.of("POST", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
