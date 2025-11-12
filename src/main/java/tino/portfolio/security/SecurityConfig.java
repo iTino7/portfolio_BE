@@ -24,12 +24,8 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())                  // attiva CORS sotto Spring Security
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                        .requestMatchers(
-                                "/api/contact",
-                                "/v3/api-docs/**",
-                                "/swagger-ui.html",
-                                "/swagger-ui/**"
-                        ).permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/contact/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(HttpBasicConfigurer::disable)
@@ -47,12 +43,10 @@ public class SecurityConfig {
         ));
         configuration.setAllowedMethods(List.of("POST", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowedMethods(List.of("POST", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(false);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/api/contact", configuration);
+        source.registerCorsConfiguration("/api/contact/**", configuration);
         return source;
     }
 }
